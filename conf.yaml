@@ -1,0 +1,77 @@
+#端口号设置
+port: "8888"
+
+#设置http连接协议 http https 布尔类型 0为https 1为http
+protocol: 1
+
+#日志存放位置，以及名称限制
+log:
+  logPath: "logs/req"
+  linkName: "logs/latest.log"
+
+#超管名称
+supername:  ["superadmin"]
+
+#文件上传最大限制
+fileMax:
+    #upload file max limit #2Mb
+    staticFileMax: 2 << 20
+    #upload video max limit #50Mb
+    dynamicFileMax: 50 << 20
+
+##文件存储路径
+path:
+  VideoPath: "dynamic"
+  FilePath: "static"
+
+#redis连接配置
+redis:
+  username: "root"
+  password: "123456"
+  host: "192.168.245.22"
+  port: "6379"
+  db: "1"
+  poolsize: "10"
+  maxRetries: "5"
+
+#mysql连接配置
+mysql:
+  username: "root"
+  password: "123456"
+  host: "192.168.245.22"
+  port: "3306"
+  database: "test_go"
+  charset: "utf8mb4"
+  timeout: "10"
+
+#casbin
+casbin:
+  type: mysql
+  username: "root"
+  password: "123456"
+  host: "192.168.245.22"
+  port: "3306"
+  database: "casbin"
+  exist: false
+
+#rabbitmq example:"amqp://guest:guest@192.168.245.33:5672/"
+rabbitmq:
+  url:  "amqp://guest:guest@192.168.245.33:5672/"
+  username: "guest"
+  password: "guest"
+  host: "192.168.245.33"
+  port: "5672"
+
+#etcd
+etcd: ["192.168.245.22:2379"]
+
+#kafka
+kafka:  ["192.168.245.22:9092"]
+
+click:
+  host: "192.168.245.22"
+  port: 8123
+  name:
+  password: "123456"
+#oracle
+#oracle: ["system/system@192.168.245.22:1521/XE"]
