@@ -1,11 +1,11 @@
 package middleWare
 
 import (
-	"HelloGin/src/dto/comDto"
-	"HelloGin/src/global"
-	"HelloGin/src/util"
 	"bytes"
 	"fmt"
+	"gin-web/src/dto/comDto"
+	"gin-web/src/global"
+	"gin-web/src/util"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/time/rate"

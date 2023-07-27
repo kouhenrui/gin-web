@@ -1,10 +1,10 @@
 package util
 
 import (
-	"HelloGin/src/global"
 	"context"
 	"encoding/json"
 	"fmt"
+	"gin-web/src/global"
 	"time"
 )
 

@@ -1,11 +1,10 @@
 package user
 
 import (
-	"HelloGin/src/dto/reqDto"
-	"HelloGin/src/global"
-	"HelloGin/src/service/userService"
-	"HelloGin/src/util"
 	"fmt"
+	"gin-web/src/dto/reqDto"
+	"gin-web/src/global"
+	"gin-web/src/util"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"net/http"
@@ -57,13 +56,13 @@ func newLogin(c *gin.Context) {
 	//wg.Add(1)
 	//userLoginErr := make(chan error)
 	//userLoginData := make(chan resDto.TokenAndExp)
-	endErr, endData := userService.NewUserLogin(loginDto)
-	fmt.Println(endErr, endData)
-	if endErr != nil {
-		c.Error(endErr)
-		return
-	}
-	c.Set("res", endData)
+	//endErr, endData := userService.NewUserLogin(loginDto)
+	//fmt.Println(endErr, endData)
+	//if endErr != nil {
+	//	c.Error(endErr)
+	//	return
+	//}
+	c.Set("res", "endData")
 }
 
 /*
@@ -84,12 +83,12 @@ func signUser(c *gin.Context) {
 		c.Error(errs)
 		return
 	}
-	err, res := userService.UserSin(sign)
-	if err != nil {
-		c.Error(err)
-		return
-	}
-	c.Set("res", res)
+	//err, res := userService.UserSin(sign)
+	//if err != nil {
+	//	c.Error(err)
+	//	return
+	//}
+	c.Set("res", "res")
 }
 
 //func rejisterUser(c *gin.Context) {

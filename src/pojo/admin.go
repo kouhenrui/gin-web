@@ -1,8 +1,8 @@
 package pojo
 
 import (
-	"HelloGin/src/dto/reqDto"
-	"HelloGin/src/dto/resDto"
+	"gin-web/src/dto/reqDto"
+	"gin-web/src/dto/resDto"
 	"gorm.io/gorm"
 )
 

@@ -1,8 +1,8 @@
 package middleWare
 
 import (
-	"HelloGin/src/global"
 	"fmt"
+	"gin-web/src/global"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"runtime/debug"

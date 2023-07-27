@@ -1,8 +1,8 @@
 package pojo
 
 import (
-	"HelloGin/src/dto/resDto"
-	"HelloGin/src/global"
+	"gin-web/src/dto/resDto"
+	"gin-web/src/global"
 	"log"
 )
 

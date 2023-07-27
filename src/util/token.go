@@ -1,9 +1,9 @@
 package util
 
 import (
-	"HelloGin/src/dto/comDto"
-	"HelloGin/src/global"
 	"fmt"
+	"gin-web/src/dto/comDto"
+	"gin-web/src/global"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"time"

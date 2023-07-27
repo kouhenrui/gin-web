@@ -1,13 +1,13 @@
 package adminService
 
 import (
-	"HelloGin/src/dto/comDto"
-	"HelloGin/src/dto/reqDto"
-	"HelloGin/src/dto/resDto"
-	"HelloGin/src/global"
-	"HelloGin/src/pojo"
-	"HelloGin/src/service/userService"
-	"HelloGin/src/util"
+	"gin-web/src/dto/comDto"
+	"gin-web/src/dto/reqDto"
+	"gin-web/src/dto/resDto"
+	"gin-web/src/global"
+	"gin-web/src/pojo"
+	"gin-web/src/service/userService"
+	"gin-web/src/util"
 )
 
 //type AdminService struct {

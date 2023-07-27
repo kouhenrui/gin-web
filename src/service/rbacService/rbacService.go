@@ -1,10 +1,10 @@
 package rbacService
 
 import (
-	"HelloGin/src/dto/reqDto"
-	"HelloGin/src/dto/resDto"
-	"HelloGin/src/pojo"
 	"fmt"
+	"gin-web/src/dto/reqDto"
+	"gin-web/src/dto/resDto"
+	"gin-web/src/pojo"
 )
 
 /**

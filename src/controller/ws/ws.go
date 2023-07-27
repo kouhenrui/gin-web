@@ -1,10 +1,10 @@
 package ws
 
 import (
-	"HelloGin/src/global"
-	"HelloGin/src/util"
 	"errors"
 	"fmt"
+	"gin-web/src/global"
+	"gin-web/src/util"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"log"

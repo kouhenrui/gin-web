@@ -1,12 +1,12 @@
 package admin
 
 import (
-	"HelloGin/src/dto/reqDto"
-	"HelloGin/src/global"
-	"HelloGin/src/service/adminService"
-	"HelloGin/src/service/rbacService"
-	"HelloGin/src/service/userService"
 	"fmt"
+	"gin-web/src/dto/reqDto"
+	"gin-web/src/global"
+	"gin-web/src/service/adminService"
+	"gin-web/src/service/rbacService"
+	"gin-web/src/service/userService"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"net/http"

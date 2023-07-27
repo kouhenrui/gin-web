@@ -1,7 +1,9 @@
 package userService
 
+import "gin-web/src/dto/reqDto"
+
+// import (
 //
-//import (
 //	"HelloGin/src/dto/comDto"
 //	"HelloGin/src/dto/resDto"
 //	"HelloGin/src/global"
@@ -12,151 +14,155 @@ package userService
 //	"github.com/mitchellh/mapstructure"
 //	"login/src/dto/reqDto"
 //	"login/src/pojo"
-//)
 //
-//var user pojo.User
-//var userServiceImpl = pojo.UserServiceImpl()
-//var userInfo = &resDto.UserInfo{}
-//var err error
+// )
 //
-///*
+// var user pojo.User
+// var userServiceImpl = pojo.UserServiceImpl()
+// var userInfo = &resDto.UserInfo{}
+// var err error
+//
+// /*
 // * @MethodName NewUserLogin
 // * @Description 支持图片验证
 // * @Author khr
 // * @Date 2023/5/8 14:06
 // */
-//func Login(dto reqDto.Login) (error, interface{}) {
-//	dtoErr, dtoUser := userServiceImpl.CheckPhone(dto.Phone)
-//	if dtoErr != nil {
-//		return dtoErr, nil
-//	}
-//	enpwd := dtoUser.Password
-//	salt := dtoUser.Salt
-//	pwd, pwdErr := util.DePwdCode(enpwd, salt)
-//	if pwdErr != nil {
-//		return errors.New(util.PASSWORD_RESOLUTION_ERROR), nil
-//	}
-//	if pwd != dto.Password {
-//		return errors.New(util.AUTH_LOGIN_PASSWORD_ERROR), nil
-//	}
-//	switch dto.Method {
-//	case "captcha":
-//		capres := util.VerifyCaptcha(dto.Captcha)
-//		if !capres {
-//			return errors.New(util.VERIFY_CODE_ERROR), nil
+//
+//	func Login(dto reqDto.Login) (error, interface{}) {
+//		dtoErr, dtoUser := userServiceImpl.CheckPhone(dto.Phone)
+//		if dtoErr != nil {
+//			return dtoErr, nil
 //		}
-//		break
-//	case "message":
-//		break
-//	default:
-//		return errors.New(util.METHOD_NOT_FILLED_ERROR), nil
-//		break
-//	}
-//	//获取redis缓存
-//	existOldToken := util.ExistRedis(dtoUser.AccessToken)
-//	tokenKey := util.Rand6String6()
-//	var token string
-//	var exptime string
-//	ruleErr, roleName := casbinService.CheckRuleName(uint(dtoUser.Role))
-//	if ruleErr != nil {
-//		roleName = ""
-//	}
-//	stringTokenData := comDto.TokenClaims{
-//		Id:       dtoUser.ID,
-//		Name:     dtoUser.Name,
-//		Role:     dtoUser.Role,
-//		Phone:    dtoUser.Phone,
-//		Account:  dtoUser.Account,
-//		RoleName: roleName,
-//	}
-//	tokenAndExp := resDto.TokenAndExp{}
-//	switch dto.Revoke {
-//	case true:
-//		if existOldToken {
-//			util.DelRedis(dtoUser.AccessToken) //清除token
+//		enpwd := dtoUser.Password
+//		salt := dtoUser.Salt
+//		pwd, pwdErr := util.DePwdCode(enpwd, salt)
+//		if pwdErr != nil {
+//			return errors.New(util.PASSWORD_RESOLUTION_ERROR), nil
 //		}
-//		token, exptime = util.SignToken(stringTokenData, global.UserLoginTime*global.DayTime)
-//		err = userServiceImpl.UpdateToken(tokenKey, dtoUser.ID)
-//		if err != nil {
-//			return err, nil
+//		if pwd != dto.Password {
+//			return errors.New(util.AUTH_LOGIN_PASSWORD_ERROR), nil
 //		}
-//		redisDate := reqDto.LoginRedisDate{
-//			Token:   token,
-//			Exptime: exptime,
-//		}
-//		util.SetRedis(tokenKey, util.Marshal(redisDate), global.UserLoginTime)
-//		tokenAndExp.Token = token
-//		tokenAndExp.Exptime = exptime
-//		return nil, tokenAndExp
-//		break
-//	case false:
-//		if existOldToken {
-//			tokenValue := util.GetRedis(dtoUser.AccessToken)
-//			mp := make(map[string]interface{})
-//			_, cs := util.UnMarshal([]byte(tokenValue), &mp)
-//			er := mapstructure.Decode(cs, &tokenAndExp)
-//			if er != nil {
-//				return err, nil
+//		switch dto.Method {
+//		case "captcha":
+//			capres := util.VerifyCaptcha(dto.Captcha)
+//			if !capres {
+//				return errors.New(util.VERIFY_CODE_ERROR), nil
 //			}
 //			break
-//		} else {
+//		case "message":
+//			break
+//		default:
+//			return errors.New(util.METHOD_NOT_FILLED_ERROR), nil
+//			break
+//		}
+//		//获取redis缓存
+//		existOldToken := util.ExistRedis(dtoUser.AccessToken)
+//		tokenKey := util.Rand6String6()
+//		var token string
+//		var exptime string
+//		ruleErr, roleName := casbinService.CheckRuleName(uint(dtoUser.Role))
+//		if ruleErr != nil {
+//			roleName = ""
+//		}
+//		stringTokenData := comDto.TokenClaims{
+//			Id:       dtoUser.ID,
+//			Name:     dtoUser.Name,
+//			Role:     dtoUser.Role,
+//			Phone:    dtoUser.Phone,
+//			Account:  dtoUser.Account,
+//			RoleName: roleName,
+//		}
+//		tokenAndExp := resDto.TokenAndExp{}
+//		switch dto.Revoke {
+//		case true:
+//			if existOldToken {
+//				util.DelRedis(dtoUser.AccessToken) //清除token
+//			}
 //			token, exptime = util.SignToken(stringTokenData, global.UserLoginTime*global.DayTime)
 //			err = userServiceImpl.UpdateToken(tokenKey, dtoUser.ID)
 //			if err != nil {
-//
-//				return errors.New(util.AUTH_LOGIN_ERROR), nil
+//				return err, nil
 //			}
 //			redisDate := reqDto.LoginRedisDate{
 //				Token:   token,
 //				Exptime: exptime,
 //			}
-//			_ = util.SetRedis(tokenKey, util.Marshal(redisDate), global.UserLoginTime)
+//			util.SetRedis(tokenKey, util.Marshal(redisDate), global.UserLoginTime)
 //			tokenAndExp.Token = token
 //			tokenAndExp.Exptime = exptime
 //			return nil, tokenAndExp
 //			break
+//		case false:
+//			if existOldToken {
+//				tokenValue := util.GetRedis(dtoUser.AccessToken)
+//				mp := make(map[string]interface{})
+//				_, cs := util.UnMarshal([]byte(tokenValue), &mp)
+//				er := mapstructure.Decode(cs, &tokenAndExp)
+//				if er != nil {
+//					return err, nil
+//				}
+//				break
+//			} else {
+//				token, exptime = util.SignToken(stringTokenData, global.UserLoginTime*global.DayTime)
+//				err = userServiceImpl.UpdateToken(tokenKey, dtoUser.ID)
+//				if err != nil {
+//
+//					return errors.New(util.AUTH_LOGIN_ERROR), nil
+//				}
+//				redisDate := reqDto.LoginRedisDate{
+//					Token:   token,
+//					Exptime: exptime,
+//				}
+//				_ = util.SetRedis(tokenKey, util.Marshal(redisDate), global.UserLoginTime)
+//				tokenAndExp.Token = token
+//				tokenAndExp.Exptime = exptime
+//				return nil, tokenAndExp
+//				break
+//			}
+//		default:
+//			return errors.New(util.REQUEST_NOT_EXIST), nil
+//			break
 //		}
-//	default:
-//		return errors.New(util.REQUEST_NOT_EXIST), nil
-//		break
-//	}
-//	return nil, tokenAndExp
+//		return nil, tokenAndExp
 //
-//}
+// }
 //
-//func UserSin(dto reqDto.SignUser) (error, interface{}) {
-//	capres := util.VerifyCaptcha(dto.Captcha)
-//	if !capres {
-//		return errors.New(util.VERIFY_CODE_ERROR), nil
+//	func UserSin(dto reqDto.SignUser) (error, interface{}) {
+//		capres := util.VerifyCaptcha(dto.Captcha)
+//		if !capres {
+//			return errors.New(util.VERIFY_CODE_ERROR), nil
+//		}
+//		err, _ = userServiceImpl.CheckPhone(dto.Phone)
+//		if err != nil {
+//			return err, nil
+//		}
+//		//校验是否有密码，没有则为123456
+//		var pwd string
+//		if dto.Password == "" {
+//			pwd = string(123456)
+//		}
+//		salt := util.RandAllString()
+//		//调用加密方法
+//		password, _ := util.EnPwdCode(pwd, salt)
+//		user.Phone = dto.Phone
+//		user.Password = password
+//		user.Salt = salt
+//		err = userServiceImpl.AddUser(user)
+//		fmt.Println(err, "写入错误")
+//		if err != nil {
+//			return err, nil
+//		}
+//		return nil, util.ADD_SUCCESS
 //	}
-//	err, _ = userServiceImpl.CheckPhone(dto.Phone)
-//	if err != nil {
-//		return err, nil
-//	}
-//	//校验是否有密码，没有则为123456
-//	var pwd string
-//	if dto.Password == "" {
-//		pwd = string(123456)
-//	}
-//	salt := util.RandAllString()
-//	//调用加密方法
-//	password, _ := util.EnPwdCode(pwd, salt)
-//	user.Phone = dto.Phone
-//	user.Password = password
-//	user.Salt = salt
-//	err = userServiceImpl.AddUser(user)
-//	fmt.Println(err, "写入错误")
-//	if err != nil {
-//		return err, nil
-//	}
-//	return nil, util.ADD_SUCCESS
-//}
 //
-//// 用户列表
-//func UserList(list reqDto.UserList) interface{} {
-//	res := userServiceImpl.UserList(list)
-//	return res
-//}
+// // 用户列表
+func UserList(list reqDto.UserList) interface{} {
+	//res := userServiceImpl.UserList(list)
+	//return res
+	return "success"
+}
+
 //
 //// 登录
 //func UserLogin(list reqDto.UserLogin, resErr chan error, resData chan resDto.TokenAndExp) {

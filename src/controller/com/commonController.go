@@ -1,9 +1,9 @@
 package com
 
 import (
-	"HelloGin/src/global"
-	"HelloGin/src/util"
 	"fmt"
+	"gin-web/src/global"
+	"gin-web/src/util"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"

@@ -1,8 +1,8 @@
 package util
 
 import (
-	"HelloGin/src/dto/reqDto"
 	"fmt"
+	"gin-web/src/dto/reqDto"
 	"github.com/mojocn/base64Captcha"
 	"image/color"
 	"regexp"
